@@ -1418,7 +1418,7 @@ void t_c_glib_generator::generate_service_client(t_service *tservice) {
 
       f_service_ << endl <<
         indent() << "gint32 rseqid;" << endl <<
-        indent() << "gchar * fname;" << endl <<
+        indent() << "gchar * fname = NULL;" << endl <<
         indent() << "ThriftMessageType mtype;" << endl <<
         indent() << "ThriftProtocol * protocol = " << 
                       this->nspace_uc << service_name_uc <<
