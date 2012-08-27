@@ -71,12 +71,13 @@ thrift_framed_transport_read_frame (ThriftTransport *transport,
                                     GError **error)
 {
   ThriftFramedTransport *t = THRIFT_FRAMED_TRANSPORT (transport);
-  gint32 sz, bytes;
+  gint32 sz = -1, bytes;
 
   /* read the size */
   THRIFT_TRANSPORT_GET_CLASS (t->transport)->read (t->transport,
                                                    (guint32 *) &sz,
                                                    sizeof (sz), error);
+  if (sz==-1) return FALSE;
   sz = ntohl (sz);
 
   /* create a buffer to hold the data and read that much data */
